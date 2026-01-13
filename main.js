@@ -4,7 +4,6 @@ const files = ['readme.md', 'tech.md', 'gastronomy.md', 'contact.md'];
 // Initialize
 let currentFile = 'readme.md';
 let sessionStartTime = Date.now();
-let visitorLocation = null;
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
@@ -140,9 +139,6 @@ function initializeFooter() {
     updateSessionTimer();
     setInterval(updateSessionTimer, 1000);
     
-    // Visitor location
-    fetchVisitorLocation();
-    
     // Time display
     updateTimeDisplay();
     setInterval(updateTimeDisplay, 1000);
@@ -157,48 +153,6 @@ function updateSessionTimer() {
     
     const formatted = `[session ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}]`;
     document.getElementById('session-timer').textContent = formatted;
-}
-
-// Fetch visitor location
-async function fetchVisitorLocation() {
-    try {
-        const response = await fetch('https://ipapi.co/json/');
-        if (!response.ok) {
-            throw new Error('Failed to fetch location');
-        }
-        const data = await response.json();
-        visitorLocation = {
-            city: data.city || 'unknown',
-            country: data.country_name || 'unknown',
-            countryCode: data.country_code || data.country || 'unknown'
-        };
-        updateVisitorLocation();
-    } catch (error) {
-        // Fallback to alternative API
-        try {
-            const response = await fetch('https://ip-api.com/json/');
-            if (!response.ok) {
-                throw new Error('Failed to fetch location');
-            }
-            const data = await response.json();
-            visitorLocation = {
-                city: data.city || 'unknown',
-                country: data.country || 'unknown',
-                countryCode: data.countryCode || data.country || 'unknown'
-            };
-            updateVisitorLocation();
-        } catch (fallbackError) {
-            document.getElementById('visitor-location').textContent = '[visitor from unknown]';
-        }
-    }
-}
-
-// Update visitor location display
-function updateVisitorLocation() {
-    if (visitorLocation) {
-        const formatted = `[visitor from ${visitorLocation.city}, ${visitorLocation.countryCode.toLowerCase()}]`;
-        document.getElementById('visitor-location').textContent = formatted;
-    }
 }
 
 // Time display
@@ -266,7 +220,7 @@ function addAhojTooltip(container) {
         const regex = /(ahoj)/gi;
         
         if (regex.test(text)) {
-            const newHTML = text.replace(regex, '<span class="ahoj-tooltip" data-tooltip="I\'m czech, not sea pirate">$1</span>');
+            const newHTML = text.replace(regex, '<span class="ahoj-tooltip" data-tooltip="I\'m Czech, not sea pirate">$1</span>');
             const temp = document.createElement('span');
             temp.innerHTML = newHTML;
             

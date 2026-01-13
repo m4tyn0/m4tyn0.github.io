@@ -279,16 +279,11 @@ body {
     padding: 10px 20px;
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 15px;
     font-size: 0.85em;
     flex-wrap: wrap;
     z-index: 100;
-}
-
-.footer .note {
-    color: #666;
-    font-size: 0.75em;
-    margin-left: auto;
 }
 
 @media (max-width: 768px) {

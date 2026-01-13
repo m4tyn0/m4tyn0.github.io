@@ -24,25 +24,25 @@ and understand what it takes to keep systems running.
 
 ## how i work
 
-i ask questions first. understanding your problem matters 
+i ask questions first - understanding your problem matters 
 more than jumping to solutions.
 
-i prefer simple over clever. code that works and can be easily 
+i prefer simple over clever - code that works and can be easily 
 maintained beats elegant abstractions nobody understands.
 
-i document everything (thanks to ai) 
+i document everything (e.g. curate ai-gen docs) 
 
 ## experience
 
-**freelance developer** / 2025 - present
+**freelance developer** / 2025 - present /
 custom ai solutions, automation workflows, full-stack 
 development for clients worldwide.
 
-**junior software developer** / Seznam a.s. / 2022 - 2025
+**junior software developer** / Seznam a.s. / 2022 - 2025 /
 backend development in c++ and python. docker, kubernetes, 
 openstack. linux systems.
 
-**www apps developer course** / 2021 - 2022
+**www apps developer course** / 2021 - 2022 /
 html/css, javascript, c# .net, ms sql.
 
 ## ai & ml
