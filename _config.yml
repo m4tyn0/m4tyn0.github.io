@@ -8,9 +8,7 @@ url: "" # the base hostname & protocol for your site
 # Build settings
 markdown: kramdown
 highlighter: rouge
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
+plugins: []
 
 # Exclude files from processing
 exclude:
@@ -23,5 +21,5 @@ exclude:
   - README.md
 
 # GitHub Pages settings
-github: [metadata]
+# github: [metadata]
 
