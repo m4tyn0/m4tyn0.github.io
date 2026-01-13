@@ -5,13 +5,108 @@ const files = ['readme.md', 'tech.md', 'gastronomy.md', 'contact.md'];
 let currentFile = 'readme.md';
 let sessionStartTime = Date.now();
 
+// Theme management
+function initializeTheme() {
+    // Check for saved theme preference or default to dark
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    setTheme(savedTheme);
+    
+    // Add theme toggle event listener
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+}
+
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    updateThemeToggleText(theme);
+}
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+}
+
+function updateThemeToggleText(theme) {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.textContent = `[${theme}]`;
+    }
+}
+
 // Initialize page
 document.addEventListener('DOMContentLoaded', () => {
+    // Remove any Jekyll front matter that might appear as text
+    removeFrontMatter();
+    initializeTheme();
     createNoiseTexture();
     initializeMenu();
     loadFile(currentFile);
     initializeFooter();
 });
+
+// Remove Jekyll front matter if it appears as visible text
+function removeFrontMatter() {
+    // Walk through all text nodes in body and remove front matter patterns
+    const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        {
+            acceptNode: function(node) {
+                // Only process text nodes that might contain front matter
+                const text = node.textContent.trim();
+                if (text.includes('---') && text.includes('layout:') && text.includes('null')) {
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+                return NodeFilter.FILTER_REJECT;
+            }
+        },
+        false
+    );
+    
+    const textNodes = [];
+    let node;
+    while (node = walker.nextNode()) {
+        // Check if text node contains front matter pattern (more flexible matching)
+        const text = node.textContent.trim();
+        if (text.match(/^---[\s\S]*layout:\s*null[\s\S]*---$/)) {
+            textNodes.push(node);
+        }
+    }
+    
+    // Remove front matter text nodes
+    textNodes.forEach(textNode => {
+        const parent = textNode.parentNode;
+        if (parent) {
+            parent.removeChild(textNode);
+            // Clean up empty parent if it only contained the front matter
+            if (parent.textContent.trim() === '' && parent.tagName !== 'SCRIPT' && parent.tagName !== 'STYLE') {
+                parent.parentNode?.removeChild(parent);
+            }
+        }
+    });
+    
+    // Also check and clean body's direct text content (before any elements)
+    let firstChild = document.body.firstChild;
+    while (firstChild && firstChild.nodeType === Node.TEXT_NODE) {
+        const text = firstChild.textContent.trim();
+        if (text.match(/^---[\s\S]*layout:\s*null[\s\S]*---$/)) {
+            const nextSibling = firstChild.nextSibling;
+            document.body.removeChild(firstChild);
+            firstChild = nextSibling;
+        } else if (text === '') {
+            // Remove empty text nodes
+            const nextSibling = firstChild.nextSibling;
+            document.body.removeChild(firstChild);
+            firstChild = nextSibling;
+        } else {
+            break;
+        }
+    }
+}
 
 // Create noise texture for background
 function createNoiseTexture() {
