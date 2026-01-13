@@ -76,10 +76,15 @@ function initializeMenu() {
 function updateActiveMenuItem() {
     const items = document.querySelectorAll('.menu li.file-item');
     items.forEach((item, index) => {
+        const fileNameWithoutExt = files[index].replace(/\.md$/, '');
         if (files[index] === currentFile) {
             item.classList.add('active');
+            // Prepend "> " (greater than + space) to active item
+            item.textContent = `> ${fileNameWithoutExt}`;
         } else {
             item.classList.remove('active');
+            // Prepend two spaces for non-active items
+            item.textContent = `  ${fileNameWithoutExt}`;
         }
     });
 }

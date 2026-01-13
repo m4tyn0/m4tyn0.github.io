@@ -49,6 +49,7 @@ body {
     width: 250px;
     background-color: #000;
     padding: 20px;
+    padding-bottom: 60px;
     overflow-y: auto;
     flex-shrink: 0;
     position: relative;
@@ -59,7 +60,7 @@ body {
     position: absolute;
     right: 0;
     top: 20px;
-    bottom: 20px;
+    bottom: 60px;
     width: 1px;
     background-color: #333;
 }
@@ -72,7 +73,6 @@ body {
     margin-bottom: 10px;
     cursor: pointer;
     padding: 8px;
-    border-left: 2px solid transparent;
     transition: all 0.2s;
 }
 
@@ -92,22 +92,24 @@ body {
 
 .menu li.file-item {
     padding-left: 20px;
+    border-left: 2px solid transparent;
 }
 
-.menu li:hover {
-    background-color: #1a1a1a;
-    border-left-color: #666;
+.menu li:hover:not(.active) {
+    text-decoration: underline;
 }
 
 .menu li.active {
-    border-left-color: #fff;
-    background-color: #1a1a1a;
+    text-decoration: underline;
+    background-color: transparent !important;
+    border-left-color: transparent !important;
 }
 
 .content {
     flex: 1;
     overflow-y: auto;
     padding: 40px;
+    padding-bottom: 60px;
     background-color: #000;
 }
 
@@ -272,9 +274,9 @@ body {
 .footer {
     position: fixed;
     bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #0a0a0a;
+    left: 20px;
+    right: 20px;
+    background-color: #000;
     border-top: 1px solid #333;
     padding: 10px 20px;
     display: flex;
@@ -284,6 +286,7 @@ body {
     font-size: 0.85em;
     flex-wrap: wrap;
     z-index: 100;
+    color: #888;
 }
 
 @media (max-width: 768px) {
