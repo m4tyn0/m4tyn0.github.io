@@ -3,7 +3,7 @@
 title: Portfolio
 description: Software developer & gastronomy consultant
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site
+url: "https://matejcoufal.com" # the base hostname & protocol for your site
 
 # Build settings
 markdown: kramdown
