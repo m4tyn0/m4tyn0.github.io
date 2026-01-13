@@ -1,19 +1,14 @@
-# ahoj, i'm matěj
+# ahoj, i'm matěj coufal
 
-developer & gastronomy consultant based in brno, czech republic.
+software developer & gastronomy consultant based in central Europe.
 
-i build things with code and cook things with fire.
+i help people automate their stuff and integrate ai into their workflows
 
-two crafts, one mindset: understand the fundamentals, 
-respect the process, iterate until it's right.
+i think there is a hidden generalist inside every bright mind, as exploring different fields of human existence is a great source of growth possibilities and gained perspectives.
 
-former professional bartender & cook turned software developer.
-still learning, always curious.
+therefore, i do not see myself so much as a developer but 
+maker of fine-tuned human-to-machine interfaces 
+and
+creator of fine-mood human-to-human events. 
 
----
-
-> "form follows function"
-
----
-
-navigate the files on the left to learn more.
+i build things with code and content and cook things with fire.

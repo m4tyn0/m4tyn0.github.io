@@ -1,4 +1,4 @@
-# /gastro
+# /gastronomy
 
 a decade behind the bar and in the kitchen taught me 
 more about problem-solving than any bootcamp ever could.

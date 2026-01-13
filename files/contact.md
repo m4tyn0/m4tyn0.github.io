@@ -1,28 +1,26 @@
 # /contact
 
-let's talk.
+## let's talk!
 
-## email
+### email
 
-coufal.matej@gmail.com
+[coufal.matej@gmail.com](mailto:coufal.matej@gmail.com)
 
-## github
+### github
 
-github.com/m4tyn0
+[github.com/m4tyn0](https://github.com/m4tyn0)
 
-## location
+### location
 
-brno, czech republic
-central european time (CET/CEST)
+brno, czech republic (CET)
 
-## availability
+### availability
 
-open to freelance projects, consulting, 
-and interesting collaborations.
+open to freelance projects, consulting, and interesting collaborations.
 
 response time: usually within 24 hours.
 
 ---
 
-for live fire catering inquiries:
-→ [tomatyno.cz](https://www.tomatyno.cz/ "Tomatyno - Live Fire Catering")
+for fire comfort food events:
+→ [tomatyno.cz](https://www.tomatyno.cz/ "tomatyno - ")

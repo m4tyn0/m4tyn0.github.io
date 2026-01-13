@@ -1,15 +1,19 @@
+---
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <div class="container">
         <aside class="sidebar">
+            <div class="logo">mc</div>
             <nav class="menu">
                 <ul id="file-list">
                     <!-- File list will be populated by JS -->
@@ -29,7 +33,7 @@
         <span id="status">[open to projects]</span>
         <span class="note">location via ip (not stored)</span>
     </footer>
-    <script src="main.js"></script>
+    <script src="{{ '/main.js' | relative_url }}"></script>
 </body>
 </html>
 
