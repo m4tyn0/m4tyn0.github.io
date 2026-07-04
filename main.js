@@ -353,7 +353,6 @@ function ensureAhojTooltipPopup() {
         ahojTooltipPopup = document.createElement('div');
         ahojTooltipPopup.id = 'ahoj-tooltip-popup';
         ahojTooltipPopup.setAttribute('role', 'tooltip');
-        ahojTooltipPopup.hidden = true;
         document.body.appendChild(ahojTooltipPopup);
     }
     return ahojTooltipPopup;
@@ -362,17 +361,17 @@ function ensureAhojTooltipPopup() {
 function showAhojTooltip(target) {
     const popup = ensureAhojTooltipPopup();
     popup.textContent = target.dataset.tooltip;
-    popup.hidden = false;
 
     const rect = target.getBoundingClientRect();
     popup.style.left = `${rect.left + rect.width / 2}px`;
     popup.style.top = `${rect.top - 5}px`;
     popup.style.transform = 'translate(-50%, -100%)';
+    popup.classList.add('is-visible');
 }
 
 function hideAhojTooltip() {
     if (ahojTooltipPopup) {
-        ahojTooltipPopup.hidden = true;
+        ahojTooltipPopup.classList.remove('is-visible');
     }
 }
 
