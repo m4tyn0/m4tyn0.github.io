@@ -23,4 +23,4 @@ response time: usually within 24 hours.
 ---
 
 for fire comfort food events:
-→ [tomatyno.cz](https://www.tomatyno.cz/ "tomatyno - ")
+→ [tomatyno.cz](https://www.tomatyno.cz/ "tomatyno - live fire catering")

@@ -1,7 +1,7 @@
 # Jekyll Configuration for GitHub Pages
 
-title: matěj coufal
-description: Software developer & gastronomy consultant
+title: matěj coufal — ai automation developer & live fire catering
+description: Software developer & gastronomy consultant from Brno, Czech Republic. AI automation, workflow and backend development for clients worldwide — plus live fire catering and funky open-flame food events.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://matejcoufal.com" # the base hostname & protocol for your site
 

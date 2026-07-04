@@ -228,9 +228,18 @@ async function loadFile(filename) {
         
         // Add tooltip to "ahoj" text
         addAhojTooltip(contentDiv);
+        
+        updateDocumentTitle(filename);
     } catch (error) {
         contentDiv.innerHTML = `<p>Error loading ${filename}: ${error.message}</p>`;
     }
+}
+
+// Keep the browser tab title in sync with the open section
+function updateDocumentTitle(filename) {
+    const baseTitle = 'matěj coufal — ai automation developer & live fire catering';
+    const section = filename.replace(/\.md$/, '');
+    document.title = section === 'readme' ? baseTitle : `${section} | ${baseTitle}`;
 }
 
 // Footer functionality

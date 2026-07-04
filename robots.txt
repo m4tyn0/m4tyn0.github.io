@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://matejcoufal.com/sitemap.xml
