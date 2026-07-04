@@ -278,9 +278,9 @@ body {
 #markdown-content .ahoj-tooltip::after {
     content: attr(data-tooltip);
     position: absolute;
-    bottom: 100%;
+    top: 100%;
     left: 0;
-    margin-bottom: 5px;
+    margin-top: 5px;
     padding: 4px 8px;
     background-color: var(--bg-secondary);
     color: var(--text-primary);
@@ -297,11 +297,11 @@ body {
 #markdown-content .ahoj-tooltip::before {
     content: '';
     position: absolute;
-    bottom: 100%;
+    top: 100%;
     left: 1.25em;
-    margin-bottom: -1px;
+    margin-top: 1px;
     border: 4px solid transparent;
-    border-top-color: var(--border-accent);
+    border-bottom-color: var(--border-accent);
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.2s ease-in-out, border-color 0.3s ease;

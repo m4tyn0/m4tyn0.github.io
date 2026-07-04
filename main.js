@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeTheme();
     createNoiseTexture();
     initializeMenu();
+    addAhojTooltip(document.getElementById('markdown-content'));
     loadFile(currentFile);
     initializeFooter();
 });
@@ -329,7 +330,7 @@ function addAhojTooltip(container) {
         const regex = /(ahoj)/gi;
         
         if (regex.test(text)) {
-            const newHTML = text.replace(regex, '<span class="ahoj-tooltip" data-tooltip="i\'m czech and not a sea pirate">$1</span>');
+            const newHTML = text.replace(regex, '<span class="ahoj-tooltip" data-tooltip="i\'m czech, not a sea pirate">$1</span>');
             const temp = document.createElement('span');
             temp.innerHTML = newHTML;
             
