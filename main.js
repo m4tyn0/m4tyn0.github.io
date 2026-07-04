@@ -330,7 +330,7 @@ function addAhojTooltip(container) {
         const regex = /(ahoj)/gi;
         
         if (regex.test(text)) {
-            const newHTML = text.replace(regex, '<span class="ahoj-tooltip" data-tooltip="i\'m czech, not a sea pirate">$1</span>');
+            const newHTML = text.replace(regex, '<span class="ahoj-tooltip" data-tooltip="i\'m czech, not a sea pirate" tabindex="0">$1</span>');
             const temp = document.createElement('span');
             temp.innerHTML = newHTML;
             
@@ -341,6 +341,49 @@ function addAhojTooltip(container) {
             }
             parent.replaceChild(fragment, textNode);
         }
+    });
+
+    bindAhojTooltipEvents(container);
+}
+
+let ahojTooltipPopup = null;
+
+function ensureAhojTooltipPopup() {
+    if (!ahojTooltipPopup) {
+        ahojTooltipPopup = document.createElement('div');
+        ahojTooltipPopup.id = 'ahoj-tooltip-popup';
+        ahojTooltipPopup.setAttribute('role', 'tooltip');
+        ahojTooltipPopup.hidden = true;
+        document.body.appendChild(ahojTooltipPopup);
+    }
+    return ahojTooltipPopup;
+}
+
+function showAhojTooltip(target) {
+    const popup = ensureAhojTooltipPopup();
+    popup.textContent = target.dataset.tooltip;
+    popup.hidden = false;
+
+    const rect = target.getBoundingClientRect();
+    popup.style.left = `${rect.left + rect.width / 2}px`;
+    popup.style.top = `${rect.top - 5}px`;
+    popup.style.transform = 'translate(-50%, -100%)';
+}
+
+function hideAhojTooltip() {
+    if (ahojTooltipPopup) {
+        ahojTooltipPopup.hidden = true;
+    }
+}
+
+function bindAhojTooltipEvents(container) {
+    container.querySelectorAll('.ahoj-tooltip').forEach(el => {
+        if (el.dataset.tooltipBound) return;
+        el.dataset.tooltipBound = 'true';
+        el.addEventListener('mouseenter', () => showAhojTooltip(el));
+        el.addEventListener('mouseleave', hideAhojTooltip);
+        el.addEventListener('focus', () => showAhojTooltip(el));
+        el.addEventListener('blur', hideAhojTooltip);
     });
 }
 
