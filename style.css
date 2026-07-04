@@ -155,6 +155,7 @@ body {
     max-width: 800px;
     margin: 0 auto;
     line-height: 1.6;
+    overflow: visible;
 }
 
 #markdown-content h1,
@@ -267,49 +268,29 @@ body {
 
 /* Tooltip for "ahoj" */
 #markdown-content .ahoj-tooltip {
-    position: relative;
-    z-index: 10;
     cursor: help;
     text-decoration: underline;
     text-decoration-style: dotted;
     text-underline-offset: 2px;
 }
 
-#markdown-content .ahoj-tooltip::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 100%;
-    left: 0;
-    margin-bottom: 5px;
+#ahoj-tooltip-popup {
+    position: fixed;
+    z-index: 1000;
     padding: 4px 8px;
     background-color: var(--bg-secondary);
     color: var(--text-primary);
     border: 1px solid var(--border-accent);
     border-radius: 3px;
+    font-family: 'Andale Mono', monospace;
     font-size: 0.75em;
     white-space: nowrap;
-    opacity: 0;
     pointer-events: none;
+    opacity: 0;
     transition: opacity 0.2s ease-in-out, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-    z-index: 10000;
 }
 
-#markdown-content .ahoj-tooltip::before {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    left: 1.25em;
-    margin-bottom: -1px;
-    border: 4px solid transparent;
-    border-top-color: var(--border-accent);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease-in-out, border-color 0.3s ease;
-    z-index: 10001;
-}
-
-#markdown-content .ahoj-tooltip:hover::after,
-#markdown-content .ahoj-tooltip:hover::before {
+#ahoj-tooltip-popup.is-visible {
     opacity: 1;
 }
 

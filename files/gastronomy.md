@@ -34,7 +34,7 @@ the unsexy stuff that makes hospitality actually work.
 
 ## live fire catering
 
-funky catering for events, gatherings, and private 
+funky catering for events, gatherings and private 
 parties with open-flame cooking — anywhere in the world:
 
 → [tomatyno.cz](https://www.tomatyno.cz/ "Tomatyno - Live Fire Catering Brno")
