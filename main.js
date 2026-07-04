@@ -320,7 +320,7 @@ function addAhojTooltip(container) {
         const regex = /(ahoj)/gi;
         
         if (regex.test(text)) {
-            const newHTML = text.replace(regex, '<span class="ahoj-tooltip" data-tooltip="I\'m Czech, not sea pirate">$1</span>');
+            const newHTML = text.replace(regex, '<span class="ahoj-tooltip" data-tooltip="i\'m czech and not a sea pirate">$1</span>');
             const temp = document.createElement('span');
             temp.innerHTML = newHTML;
             
