@@ -190,6 +190,15 @@ function navigateToFile(file) {
     currentFile = file;
     updateActiveMenuItem();
     loadFile(file);
+
+    if (window.matchMedia('(max-width: 768px)').matches) {
+        requestAnimationFrame(() => {
+            document.querySelector('.menu li.active')?.scrollIntoView({
+                block: 'nearest',
+                inline: 'center'
+            });
+        });
+    }
 }
 
 // Update active menu item
@@ -255,7 +264,11 @@ async function loadFile(filename) {
         addAhojTooltip(contentDiv);
         
         updateDocumentTitle(filename);
-        document.querySelector('.content').scrollTo(0, 0);
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            window.scrollTo(0, 0);
+        } else {
+            document.querySelector('.content').scrollTo(0, 0);
+        }
     } catch (error) {
         if (requestId !== latestLoadRequest) return;
         contentDiv.innerHTML = `<p>Error loading ${filename}: ${error.message}</p>`;
