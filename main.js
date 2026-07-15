@@ -206,17 +206,6 @@ function updateActiveMenuItem() {
         }
     });
 
-    if (window.matchMedia('(max-width: 768px)').matches) {
-        requestAnimationFrame(() => {
-            const menu = document.querySelector('.menu');
-            const activeItem = menu?.querySelector('li.active');
-            if (!menu || !activeItem) return;
-
-            const centeredPosition = activeItem.offsetLeft
-                - (menu.clientWidth - activeItem.offsetWidth) / 2;
-            menu.scrollLeft = centeredPosition;
-        });
-    }
 }
 
 // Load and render markdown file

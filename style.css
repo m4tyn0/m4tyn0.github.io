@@ -494,6 +494,16 @@ body {
 }
 
 @media (max-width: 360px) {
+    .menu {
+        overflow: visible;
+    }
+
+    .menu ul {
+        width: 100%;
+        min-width: 0;
+        flex-wrap: wrap;
+    }
+
     .file-link {
         padding-inline: 10px;
     }
