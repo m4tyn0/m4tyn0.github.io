@@ -97,18 +97,21 @@ layout: null
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">[theme]</button>
+    <a class="skip-link" href="#markdown-content">[skip to content]</a>
     <div class="container">
         <aside class="sidebar">
-            <div class="logo">mc</div>
-            <nav class="menu">
+            <div class="sidebar-header">
+                <div class="logo" aria-label="Matěj Coufal">mc</div>
+                <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">[theme]</button>
+            </div>
+            <nav class="menu" aria-label="Site sections">
                 <ul id="file-list">
                     <!-- File list will be populated by JS -->
                 </ul>
             </nav>
         </aside>
-        <main class="content">
-            <div id="markdown-content">
+        <main class="content" id="main-content">
+            <div id="markdown-content" tabindex="-1">
                 <!-- Static fallback for crawlers; replaced by JS-rendered markdown on load -->
                 <h1>ahoj, i'm matěj coufal</h1>
                 <p>software developer &amp; gastronomy consultant based in brno, czech republic — working with clients worldwide.</p>

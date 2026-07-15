@@ -4,6 +4,7 @@ const files = ['readme.md', 'tech.md', 'gastronomy.md', 'contact.md'];
 // Initialize
 let currentFile = 'readme.md';
 let sessionStartTime = Date.now();
+let latestLoadRequest = 0;
 
 // Theme management
 function initializeTheme() {
@@ -43,10 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
     removeFrontMatter();
     initializeTheme();
     createNoiseTexture();
+    currentFile = getFileFromHash();
     initializeMenu();
     addAhojTooltip(document.getElementById('markdown-content'));
     loadFile(currentFile);
     initializeFooter();
+    window.addEventListener('hashchange', () => {
+        navigateToFile(getFileFromHash());
+    });
 });
 
 // Remove Jekyll front matter if it appears as visible text
@@ -155,39 +160,58 @@ function initializeMenu() {
     files.forEach(file => {
         const li = document.createElement('li');
         li.className = 'file-item';
-        // Remove file extension for display
         const fileNameWithoutExt = file.replace(/\.md$/, '');
-        li.textContent = `  ${fileNameWithoutExt}`;
-        li.addEventListener('click', () => {
-            currentFile = file;
-            loadFile(file);
-            updateActiveMenuItem();
+        const button = document.createElement('button');
+        button.className = 'file-link';
+        button.type = 'button';
+        button.textContent = fileNameWithoutExt;
+        button.dataset.file = file;
+        button.addEventListener('click', () => {
+            const nextHash = `#${fileNameWithoutExt}`;
+            if (window.location.hash === nextHash) {
+                navigateToFile(file);
+            } else {
+                window.location.hash = nextHash;
+            }
         });
+        li.appendChild(button);
         fileList.appendChild(li);
     });
     updateActiveMenuItem();
+}
+
+function getFileFromHash() {
+    const section = window.location.hash.slice(1).toLowerCase();
+    const matchingFile = files.find(file => file.replace(/\.md$/, '') === section);
+    return matchingFile || 'readme.md';
+}
+
+function navigateToFile(file) {
+    currentFile = file;
+    updateActiveMenuItem();
+    loadFile(file);
 }
 
 // Update active menu item
 function updateActiveMenuItem() {
     const items = document.querySelectorAll('.menu li.file-item');
     items.forEach((item, index) => {
-        const fileNameWithoutExt = files[index].replace(/\.md$/, '');
+        const button = item.querySelector('.file-link');
         if (files[index] === currentFile) {
             item.classList.add('active');
-            // Prepend "> " (greater than + space) to active item
-            item.textContent = `> ${fileNameWithoutExt}`;
+            button.setAttribute('aria-current', 'page');
         } else {
             item.classList.remove('active');
-            // Prepend two spaces for non-active items
-            item.textContent = `  ${fileNameWithoutExt}`;
+            button.removeAttribute('aria-current');
         }
     });
+
 }
 
 // Load and render markdown file
 async function loadFile(filename) {
     const contentDiv = document.getElementById('markdown-content');
+    const requestId = ++latestLoadRequest;
     
     try {
         const response = await fetch(`files/${filename}`);
@@ -195,6 +219,7 @@ async function loadFile(filename) {
             throw new Error(`Failed to load ${filename}`);
         }
         const markdown = await response.text();
+        if (requestId !== latestLoadRequest) return;
         
         // Configure marked to preserve whitespace in code blocks
         const html = marked.parse(markdown, {
@@ -231,7 +256,13 @@ async function loadFile(filename) {
         addAhojTooltip(contentDiv);
         
         updateDocumentTitle(filename);
+        if (window.matchMedia('(max-width: 768px)').matches) {
+            window.scrollTo(0, 0);
+        } else {
+            document.querySelector('.content').scrollTo(0, 0);
+        }
     } catch (error) {
+        if (requestId !== latestLoadRequest) return;
         contentDiv.innerHTML = `<p>Error loading ${filename}: ${error.message}</p>`;
     }
 }
@@ -347,12 +378,15 @@ function addAhojTooltip(container) {
 }
 
 let ahojTooltipPopup = null;
+let activeAhojTooltip = null;
+let ahojDismissHandlerBound = false;
 
 function ensureAhojTooltipPopup() {
     if (!ahojTooltipPopup) {
         ahojTooltipPopup = document.createElement('div');
         ahojTooltipPopup.id = 'ahoj-tooltip-popup';
         ahojTooltipPopup.setAttribute('role', 'tooltip');
+        ahojTooltipPopup.setAttribute('aria-hidden', 'true');
         document.body.appendChild(ahojTooltipPopup);
     }
     return ahojTooltipPopup;
@@ -367,12 +401,16 @@ function showAhojTooltip(target) {
     popup.style.top = `${rect.top - 5}px`;
     popup.style.transform = 'translate(-50%, -100%)';
     popup.classList.add('is-visible');
+    popup.setAttribute('aria-hidden', 'false');
+    activeAhojTooltip = target;
 }
 
 function hideAhojTooltip() {
     if (ahojTooltipPopup) {
         ahojTooltipPopup.classList.remove('is-visible');
+        ahojTooltipPopup.setAttribute('aria-hidden', 'true');
     }
+    activeAhojTooltip = null;
 }
 
 function bindAhojTooltipEvents(container) {
@@ -383,6 +421,19 @@ function bindAhojTooltipEvents(container) {
         el.addEventListener('mouseleave', hideAhojTooltip);
         el.addEventListener('focus', () => showAhojTooltip(el));
         el.addEventListener('blur', hideAhojTooltip);
+        el.addEventListener('click', event => {
+            event.stopPropagation();
+            if (activeAhojTooltip === el) {
+                hideAhojTooltip();
+            } else {
+                showAhojTooltip(el);
+            }
+        });
     });
+
+    if (!ahojDismissHandlerBound) {
+        document.addEventListener('click', hideAhojTooltip);
+        ahojDismissHandlerBound = true;
+    }
 }
 
