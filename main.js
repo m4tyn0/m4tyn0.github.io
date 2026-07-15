@@ -190,15 +190,6 @@ function navigateToFile(file) {
     currentFile = file;
     updateActiveMenuItem();
     loadFile(file);
-
-    if (window.matchMedia('(max-width: 768px)').matches) {
-        requestAnimationFrame(() => {
-            document.querySelector('.menu li.active')?.scrollIntoView({
-                block: 'nearest',
-                inline: 'center'
-            });
-        });
-    }
 }
 
 // Update active menu item
@@ -214,6 +205,15 @@ function updateActiveMenuItem() {
             button.removeAttribute('aria-current');
         }
     });
+
+    if (window.matchMedia('(max-width: 768px)').matches) {
+        requestAnimationFrame(() => {
+            document.querySelector('.menu li.active')?.scrollIntoView({
+                block: 'nearest',
+                inline: 'center'
+            });
+        });
+    }
 }
 
 // Load and render markdown file
