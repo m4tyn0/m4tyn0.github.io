@@ -58,6 +58,7 @@ body {
 }
 
 .logo {
+    display: inline-block;
     font-size: 2.2em;
     font-weight: 900;
     color: var(--text-primary);
@@ -66,6 +67,12 @@ body {
     padding-left: 8px;
     -webkit-text-stroke: 0.5px var(--text-primary);
     transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.logo:hover {
+    color: var(--text-primary);
+    text-decoration: none;
 }
 
 .container {
@@ -104,7 +111,6 @@ body {
 
 .menu li {
     margin-bottom: 10px;
-    cursor: pointer;
     padding: 8px;
     transition: all 0.2s;
 }
@@ -129,14 +135,27 @@ body {
     border-left: 2px solid transparent;
 }
 
-.menu li:hover:not(.active) {
+.menu li.file-item a {
+    color: var(--text-primary);
+    text-decoration: none;
+    display: block;
+}
+
+.menu li.file-item a::before {
+    content: '  ';
+    white-space: pre;
+}
+
+.menu li.file-item.active a::before {
+    content: '> ';
+}
+
+.menu li.file-item:hover:not(.active) a {
     text-decoration: underline;
 }
 
-.menu li.active {
+.menu li.file-item.active a {
     text-decoration: underline;
-    background-color: transparent !important;
-    border-left-color: transparent !important;
 }
 
 .content {

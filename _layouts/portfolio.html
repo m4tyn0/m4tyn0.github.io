@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% assign page_title = page.title | default: site.title %}
+    {% assign page_description = page.description | default: site.description %}
+    {% assign canonical_url = site.url | append: page.url %}
+    <title>{{ page_title }}</title>
+    <meta name="description" content="{{ page_description }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ page_title }}">
+    <meta property="og:description" content="{{ page_description }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:image" content="{{ site.url }}/og-image.png">
+    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:locale" content="en_US">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page_title }}">
+    <meta name="twitter:description" content="{{ page_description }}">
+    <meta name="twitter:image" content="{{ site.url }}/og-image.png">
+
+    <link rel="icon" href="{{ '/favicon.svg' | relative_url }}" type="image/svg+xml">
+    <link rel="stylesheet" href="{{ '/style.css' | relative_url }}">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": {{ site.title | jsonify }},
+          "url": {{ site.url | jsonify }},
+          "description": {{ site.description | jsonify }},
+          "author": { "@id": "{{ site.url }}/#person" }
+        },
+        {
+          "@type": "Person",
+          "@id": "{{ site.url }}/#person",
+          "name": "Matěj Coufal",
+          "url": {{ site.url | jsonify }},
+          "email": "mailto:coufal.matej@gmail.com",
+          "jobTitle": ["Software Developer", "Gastronomy Consultant"],
+          "description": {{ site.description | jsonify }},
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Brno",
+            "addressCountry": "CZ"
+          },
+          "sameAs": [
+            "https://github.com/m4tyn0",
+            "https://www.tomatyno.cz/"
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">[theme]</button>
+    <div class="container">
+        <aside class="sidebar">
+            <a class="logo" href="{{ '/' | relative_url }}">mc</a>
+            <nav class="menu" aria-label="Site">
+                <ul id="file-list">
+                    <li class="parent-dir">matěj/</li>
+                    <li class="file-item{% if page.url == '/' %} active{% endif %}">
+                        <a href="{{ '/' | relative_url }}">readme</a>
+                    </li>
+                    <li class="file-item{% if page.url == '/tech/' %} active{% endif %}">
+                        <a href="{{ '/tech/' | relative_url }}">tech</a>
+                    </li>
+                    <li class="file-item{% if page.url == '/gastronomy/' %} active{% endif %}">
+                        <a href="{{ '/gastronomy/' | relative_url }}">gastronomy</a>
+                    </li>
+                    <li class="file-item{% if page.url == '/contact/' %} active{% endif %}">
+                        <a href="{{ '/contact/' | relative_url }}">contact</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="content">
+            <article id="markdown-content">
+                {{ content }}
+            </article>
+        </main>
+    </div>
+    <footer class="footer">
+        <span id="session-timer">[session 00:00:00]</span>
+        <span id="time-display">[you: --:-- | me: --:-- cet]</span>
+    </footer>
+    <script src="{{ '/main.js' | relative_url }}"></script>
+</body>
+</html>

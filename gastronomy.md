@@ -1,3 +1,10 @@
+---
+layout: portfolio
+title: "Gastronomy | Matěj Coufal"
+description: "Hospitality background, menu development, and live-fire catering consultancy by Matěj Coufal — tomatyno.cz."
+permalink: /gastronomy/
+---
+
 # /gastronomy
 
 a decade behind the bar and in the kitchen taught me 

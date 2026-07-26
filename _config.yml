@@ -1,16 +1,16 @@
 # Jekyll Configuration for GitHub Pages
 
-title: Portfolio
-description: Software developer & gastronomy consultant
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://matejcoufal.com" # the base hostname & protocol for your site
+title: "Matěj Coufal — Software Developer & Gastronomy Consultant"
+description: "Software developer and gastronomy consultant based in Central Europe. Automation, AI workflows, and live-fire hospitality."
+baseurl: ""
+url: "https://matejcoufal.com"
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
 plugins: []
 
-# Exclude files from processing
+# Exclude files from processing / publishing
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -19,7 +19,5 @@ exclude:
   - .git
   - .gitignore
   - README.md
-
-# GitHub Pages settings
-# github: [metadata]
-
+  - VAULT.md
+  - files

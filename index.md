@@ -1,3 +1,10 @@
+---
+layout: portfolio
+title: "Matěj Coufal — Software Developer & Gastronomy Consultant"
+description: "Software developer and gastronomy consultant based in Central Europe. Automation, AI workflows, and live-fire hospitality."
+permalink: /
+---
+
 # ahoj, i'm matěj coufal
 
 software developer & gastronomy consultant based in central Europe.

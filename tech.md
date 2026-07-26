@@ -1,3 +1,10 @@
+---
+layout: portfolio
+title: "Tech | Matěj Coufal"
+description: "Automation, AI integration, backend development, and infrastructure — freelance software work by Matěj Coufal."
+permalink: /tech/
+---
+
 # /tech
 
 software and hardware development is changing abruptly in the times of ai. modern development is less about one rigid stack per developer, but much more about orchestrating various  machine learning models and their context, with not-so-rigid stack. this allows for bigger flexibility of a singular developer that can now prototype-to-product faster
@@ -102,4 +109,3 @@ bash         ████████████░░░░░░░░ glue &
     raycast      → better spotlight
     homebrew     → macos package management
     obsidian     → notes 
-

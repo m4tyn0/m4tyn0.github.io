@@ -1,3 +1,10 @@
+---
+layout: portfolio
+title: "Contact | Matěj Coufal"
+description: "Get in touch with Matěj Coufal for freelance software projects, consulting, or live-fire catering collaborations. Based in Brno, Czech Republic."
+permalink: /contact/
+---
+
 # /contact
 
 ## let's talk!
